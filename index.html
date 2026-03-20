@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nocturne — London</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#080707;--near:#0f0e0d;--surface:#171614;--lift:#1f1d1b;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
+  --dim:rgba(255,255,255,0.22);--mid:rgba(255,255,255,0.48);
+  --light:rgba(255,255,255,0.75);--white:rgba(255,255,255,0.92);
+  --copper:#a8763e;--copper2:#c2924e;--parchment:#e8dcc8;
+  --serif:'Libre Baskerville',Georgia,serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--white);font-family:var(--mono);font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.75rem 4rem;mix-blend-mode:normal}
+.nav-name{font-family:var(--serif);font-size:0.95rem;font-style:italic;color:var(--copper);text-decoration:none;letter-spacing:0.1em}
+.nav-links{display:flex;align-items:center;gap:3.5rem}
+.nav-links a{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.2s;font-family:var(--mono)}
+.nav-links a:hover{color:var(--white)}
+.nav-book{color:var(--copper)!important;border-bottom:1px solid rgba(168,118,62,0.4);padding-bottom:0.1rem}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative}
+.hero-left{background:var(--void);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 4rem 5rem;position:relative;overflow:hidden}
+.hero-left-bg{position:absolute;inset:0;background:url('https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=1200') center/cover;opacity:0.12}
+.hero-num{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.3em;color:var(--dim);margin-bottom:4rem;position:relative;z-index:1}
+.hero-h1{font-family:var(--serif);font-size:clamp(4.5rem,7vw,8rem);font-weight:700;font-style:italic;line-height:0.88;color:var(--white);letter-spacing:-0.04em;position:relative;z-index:1;margin-bottom:3rem}
+.hero-tagline{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);max-width:20rem;line-height:2.2;position:relative;z-index:1;font-family:var(--mono)}
+.hero-right{background:var(--near);display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 4rem 5rem;border-left:1px solid var(--border)}
+.hero-right-top{flex:1;display:flex;align-items:flex-start;padding-top:8rem}
+.hero-badge{display:flex;flex-direction:column;gap:0.4rem}
+.hero-badge-line{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);font-family:var(--mono)}
+.hero-badge-val{font-family:var(--serif);font-size:0.9rem;font-style:italic;color:var(--copper)}
+.hero-img-wrap{height:340px;overflow:hidden;position:relative;margin-bottom:3rem}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);opacity:0.7;transition:opacity 0.4s}
+.hero-img-wrap:hover img{opacity:0.9}
+.hero-cta-block{}
+.hero-cta-label{font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--dim);margin-bottom:1rem;font-family:var(--mono)}
+.hero-cta{display:inline-flex;align-items:center;gap:1.5rem;font-family:var(--serif);font-size:1rem;font-style:italic;color:var(--copper);text-decoration:none;transition:color 0.2s}
+.hero-cta:hover{color:var(--copper2)}
+.hero-cta::after{content:'';flex:0 0 3rem;height:1px;background:currentColor;transition:flex 0.3s}
+.hero-cta:hover::after{flex:0 0 5rem}
+
+/* DIVIDE */
+.divide{height:1px;background:var(--border)}
+
+/* PHILOSOPHY */
+.philosophy{padding:9rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:10rem;background:var(--void);align-items:start}
+.philo-index{font-size:0.58rem;letter-spacing:0.3em;color:var(--dim);font-family:var(--mono);text-transform:uppercase;margin-bottom:1.5rem}
+.philo h2{font-family:var(--serif);font-size:clamp(2.5rem,4vw,4.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1.1;letter-spacing:-0.02em}
+.philo-right{padding-top:3rem}
+.philo p{font-size:0.75rem;font-family:var(--mono);color:var(--mid);line-height:2.4;margin-bottom:1.5rem;letter-spacing:0.04em}
+.philo-rule{height:1px;background:var(--border);margin:2.5rem 0}
+.philo-credits{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.credit{display:flex;flex-direction:column;gap:0.3rem}
+.credit-label{font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);font-family:var(--mono)}
+.credit-val{font-family:var(--serif);font-size:0.88rem;font-style:italic;color:var(--copper)}
+
+/* MENU */
+.menu-section{background:var(--near);padding:9rem 4rem;border-top:1px solid var(--border)}
+.menu-head{display:grid;grid-template-columns:1fr 2fr;gap:8rem;margin-bottom:6rem;align-items:end}
+.menu-head-label{font-size:0.58rem;letter-spacing:0.3em;color:var(--dim);font-family:var(--mono);text-transform:uppercase}
+.menu-head h2{font-family:var(--serif);font-size:clamp(2rem,3vw,3.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1.1}
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)}
+.menu-col{padding:0;border-right:1px solid var(--border)}
+.menu-col:last-child{border-right:none}
+.menu-col-head{padding:1.5rem 2.5rem;border-bottom:1px solid var(--border);font-size:0.58rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--copper);font-family:var(--mono)}
+.menu-entry{padding:2rem 2.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:start;gap:2rem;transition:background 0.2s}
+.menu-entry:last-child{border-bottom:none}
+.menu-entry:hover{background:rgba(168,118,62,0.04)}
+.menu-entry-info h3{font-family:var(--serif);font-size:1rem;font-weight:400;font-style:italic;color:var(--white);margin-bottom:0.3rem}
+.menu-entry-info p{font-size:0.65rem;font-family:var(--mono);color:var(--dim);line-height:1.9;max-width:18rem;letter-spacing:0.03em}
+.menu-entry-price{font-family:var(--mono);font-size:0.7rem;color:var(--copper);white-space:nowrap;letter-spacing:0.1em;padding-top:0.3rem}
+
+/* FULL BLEED IMAGE */
+.fullbleed{height:55vh;min-height:420px;position:relative;overflow:hidden}
+.fullbleed img{width:100%;height:100%;object-fit:cover;filter:brightness(0.4) grayscale(15%);transition:filter 0.5s}
+.fullbleed:hover img{filter:brightness(0.5) grayscale(0%)}
+.fullbleed-caption{position:absolute;bottom:3rem;left:4rem;right:4rem;display:flex;justify-content:space-between;align-items:flex-end}
+.fullbleed-text{font-family:var(--serif);font-size:clamp(1.5rem,3vw,3rem);font-style:italic;color:rgba(255,255,255,0.6)}
+.fullbleed-meta{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--dim);font-family:var(--mono);text-align:right;line-height:2}
+
+/* HOURS & FIND */
+.location{padding:9rem 4rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--border);background:var(--void)}
+.loc-col{padding-right:4rem;border-right:1px solid var(--border);margin-right:4rem}
+.loc-col:last-child{border-right:none;padding-right:0;margin-right:0}
+.loc-label{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--dim);font-family:var(--mono);margin-bottom:2rem}
+.loc-content h3{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:var(--copper);margin-bottom:1.25rem}
+.loc-content p,.loc-content a{font-size:0.72rem;font-family:var(--mono);color:var(--mid);line-height:2.2;letter-spacing:0.04em;display:block;text-decoration:none;transition:color 0.2s}
+.loc-content a:hover{color:var(--copper)}
+.loc-hours{display:flex;flex-direction:column;gap:0.5rem}
+.loc-hour-row{display:grid;grid-template-columns:10rem 1fr;font-size:0.7rem;font-family:var(--mono);letter-spacing:0.06em}
+.loc-hour-row .day{color:var(--dim)}
+.loc-hour-row .time{color:var(--mid)}
+
+/* BOOKING */
+.booking{background:var(--near);padding:9rem 4rem;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:10rem;align-items:start}
+.booking-copy h2{font-family:var(--serif);font-size:clamp(2rem,3vw,3.5rem);font-weight:400;font-style:italic;color:var(--white);line-height:1.1;margin-bottom:2rem}
+.booking-copy p{font-size:0.72rem;font-family:var(--mono);color:var(--mid);line-height:2.3;margin-bottom:1.5rem;letter-spacing:0.04em}
+.booking-note{padding:2rem;border:1px solid var(--border);font-size:0.68rem;font-family:var(--mono);color:var(--dim);line-height:2.1;letter-spacing:0.04em;margin-top:2rem}
+.booking-note strong{color:var(--copper);font-weight:400}
+.booking-form{display:flex;flex-direction:column}
+.bf{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem}
+.bf label{font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--dim);font-family:var(--mono)}
+.bf input,.bf select,.bf textarea{background:transparent;border:none;border-bottom:1px solid var(--border);padding:0.85rem 0;font-size:0.8rem;font-family:var(--mono);color:var(--white);outline:none;transition:border-color 0.2s;border-radius:0;appearance:none;letter-spacing:0.04em}
+.bf input:focus,.bf select:focus,.bf textarea:focus{border-color:var(--copper)}
+.bf input::placeholder{color:var(--dim)}
+.bf select option{background:var(--near)}
+.bf textarea{resize:none;min-height:60px;line-height:1.8}
+.bf-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.booking-submit{background:transparent;border:1px solid var(--border2);color:var(--copper);padding:1.2rem 2rem;font-size:0.62rem;letter-spacing:0.25em;text-transform:uppercase;cursor:pointer;font-family:var(--mono);transition:all 0.25s;display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem}
+.booking-submit:hover{border-color:var(--copper);background:rgba(168,118,62,0.06)}
+.booking-submit span{opacity:0.4;font-size:1.1rem;transition:transform 0.2s}
+.booking-submit:hover span{opacity:1;transform:translateX(5px)}
+
+/* FOOTER */
+footer{background:var(--void);border-top:1px solid var(--border);padding:5rem 4rem 3rem}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:6rem;margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid var(--border)}
+.footer-name{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--copper);margin-bottom:0.75rem}
+.footer-blurb{font-size:0.65rem;font-family:var(--mono);color:var(--dim);line-height:2.3;max-width:20rem;letter-spacing:0.04em}
+.footer-col h4{font-size:0.56rem;letter-spacing:0.28em;text-transform:uppercase;color:rgba(168,118,62,0.5);margin-bottom:1.5rem;font-family:var(--mono)}
+.footer-col a{display:block;font-size:0.68rem;font-family:var(--mono);color:var(--dim);text-decoration:none;margin-bottom:0.7rem;transition:color 0.2s;letter-spacing:0.06em}
+.footer-col a:hover{color:var(--copper)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:0.58rem;letter-spacing:0.15em;font-family:var(--mono)}
+.footer-legal{color:rgba(255,255,255,0.15);text-transform:uppercase}
+.footer-since{font-family:var(--serif);font-style:italic;color:var(--copper);font-size:0.75rem;opacity:0.5}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Nocturne</a>
+  <div class="nav-links">
+    <a href="#philosophy">About</a>
+    <a href="#menu-section">Menu</a>
+    <a href="#location">Find Us</a>
+    <a href="#booking" class="nav-book">Book</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-left-bg"></div>
+    <div class="hero-num">Est. 2017 · Bermondsey, SE1</div>
+    <h1 class="hero-h1">Noc<br>turne</h1>
+    <div class="hero-tagline">A cocktail bar beneath the arches. Bermondsey, London SE1. Open Wednesday to Sunday.</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-top">
+      <div class="hero-badge">
+        <div class="hero-badge-line">Currently serving</div>
+        <div class="hero-badge-val">Spring menu, 2026</div>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Nocturne bar">
+    </div>
+    <div class="hero-cta-block">
+      <div class="hero-cta-label">Reserve a table</div>
+      <a href="#booking" class="hero-cta">Book for this evening</a>
+    </div>
+  </div>
+</section>
+
+<div class="divide"></div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philo">
+    <div class="philo-index">/ 001 — The bar</div>
+    <h2>Drinks made with the patience they deserve</h2>
+  </div>
+  <div class="philo-right">
+    <p>Nocturne opened in 2017 in a Victorian railway arch in Bermondsey. We serve around forty cocktails, a considered wine list, and a small number of spirits selected without compromise. The menu changes four times a year.</p>
+    <p>We are not interested in being the loudest bar on the street. We are interested in being the one you come back to. The room is dark, the seats are good, and the bartenders know what they are doing. That is the whole proposition.</p>
+    <div class="philo-rule"></div>
+    <div class="philo-credits">
+      <div class="credit"><div class="credit-label">Head bartender</div><div class="credit-val">Oliver Marsh</div></div>
+      <div class="credit"><div class="credit-label">Menu concept</div><div class="credit-val">Seasonal, British-led</div></div>
+      <div class="credit"><div class="credit-label">Seats</div><div class="credit-val">44 covers</div></div>
+      <div class="credit"><div class="credit-label">Walk-ins</div><div class="credit-val">Wed & Thu only</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu-section">
+  <div class="menu-head">
+    <div class="menu-head-label">/ 002 — Spring 2026</div>
+    <h2>The current menu</h2>
+  </div>
+  <div class="menu-cols">
+    <div class="menu-col">
+      <div class="menu-col-head">Cocktails — Signature</div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>The Arch</h3><p>Aged rum, smoked applewood, demerara, Angostura, expressed orange</p></div><div class="menu-entry-price">£16</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>Bermondsey Sour</h3><p>Rye whiskey, lemon, honey, egg white, Peychaud's, absinthe rinse</p></div><div class="menu-entry-price">£15</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>February</h3><p>Gin, forced rhubarb, elderflower, citrus, black pepper tincture</p></div><div class="menu-entry-price">£15</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>Night Train</h3><p>Mezcal, cold-brew coffee, cardamom, agave, saline, lemon</p></div><div class="menu-entry-price">£17</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>The Long Pause</h3><p>Cognac, Bénédictine, sweet vermouth, mole bitters, cherry</p></div><div class="menu-entry-price">£18</div></div>
+    </div>
+    <div class="menu-col">
+      <div class="menu-col-head">Cocktails — Low &amp; No</div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>Stone Cold</h3><p>Seedlip Spice, cucumber, tonic, dill, black salt — clean and architectural</p></div><div class="menu-entry-price">£10</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>The Tender</h3><p>Verjuice, pear, lemon thyme, sparkling water, honey, white balsamic</p></div><div class="menu-entry-price">£10</div></div>
+      <div class="menu-col-head" style="margin-top:0">Snacks</div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>Nocturne bar nuts</h3><p>House-spiced, served warm</p></div><div class="menu-entry-price">£4</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>Aged cheddar &amp; quince</h3><p>Montgomery's cheddar, quince paste, walnut crackers</p></div><div class="menu-entry-price">£9</div></div>
+      <div class="menu-entry"><div class="menu-entry-info"><h3>Smoked almonds</h3><p>Maldon salt, rosemary oil</p></div><div class="menu-entry-price">£5</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL BLEED -->
+<div class="fullbleed">
+  <img src="https://images.pexels.com/photos/274192/pexels-photo-274192.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Nocturne interior">
+  <div class="fullbleed-caption">
+    <div class="fullbleed-text">The arch at night</div>
+    <div class="fullbleed-meta">Nocturne<br>Bermondsey SE1<br>Since 2017</div>
+  </div>
+</div>
+
+<!-- HOURS & LOCATION -->
+<section class="location" id="location">
+  <div class="loc-col">
+    <div class="loc-label">/ 003 — Hours</div>
+    <div class="loc-content">
+      <h3>When we're open</h3>
+      <div class="loc-hours">
+        <div class="loc-hour-row"><span class="day">Monday–Tuesday</span><span class="time">Closed</span></div>
+        <div class="loc-hour-row"><span class="day">Wednesday</span><span class="time">17:00 – 00:00</span></div>
+        <div class="loc-hour-row"><span class="day">Thursday</span><span class="time">17:00 – 01:00</span></div>
+        <div class="loc-hour-row"><span class="day">Friday</span><span class="time">16:00 – 02:00</span></div>
+        <div class="loc-hour-row"><span class="day">Saturday</span><span class="time">14:00 – 02:00</span></div>
+        <div class="loc-hour-row"><span class="day">Sunday</span><span class="time">14:00 – 23:00</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="loc-col">
+    <div class="loc-label">/ 004 — Address</div>
+    <div class="loc-content">
+      <h3>Find the arch</h3>
+      <p>Arch 14, Druid Street<br>Bermondsey, London SE1 2HH</p>
+      <p style="margin-top:1rem">Nearest station:<br>Bermondsey (Jubilee) — 4 min walk<br>London Bridge — 8 min walk</p>
+    </div>
+  </div>
+  <div class="loc-col">
+    <div class="loc-label">/ 005 — Contact</div>
+    <div class="loc-content">
+      <h3>Get in touch</h3>
+      <a href="mailto:hello@nocturnebar.co.uk">hello@nocturnebar.co.uk</a>
+      <a href="tel:+442071234567">+44 (0)20 7123 4567</a>
+      <p style="margin-top:1.5rem;color:var(--dim)">For private hire and large bookings, email us directly. We accommodate groups of up to 44.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-copy">
+    <h2>Reserve a table</h2>
+    <p>We take bookings for groups of two or more. Walk-ins are welcome on Wednesday and Thursday evenings when space allows.</p>
+    <p>Tables are held for fifteen minutes. The bar is small — if you need to cancel, please let us know.</p>
+    <div class="booking-note">
+      <strong>Private hire</strong><br>
+      The full bar seats 44. We close for private events on select Sundays. Email us with your requirements and we will come back to you within one working day.
+    </div>
+  </div>
+  <div class="booking-form">
+    <div class="bf"><label>Name</label><input type="text" id="fName" id="fEmail" placeholder="—"></div>
+    <div class="bf"><label>Email</label><input type="email" placeholder="—"></div>
+    <div class="bf-row">
+      <div class="bf"><label>Date</label><input type="date"></div>
+      <div class="bf"><label>Time</label>
+        <select>
+          <option value="">—</option>
+          <option>17:00</option><option>18:00</option><option>19:00</option>
+          <option>20:00</option><option>21:00</option><option>22:00</option>
+        </select>
+      </div>
+    </div>
+    <div class="bf-row">
+      <div class="bf"><label>Party size</label>
+        <select>
+          <option value="">—</option>
+          <option>2</option><option>3–4</option><option>5–6</option>
+          <option>7–10</option><option>11+</option>
+        </select>
+      </div>
+      <div class="bf"><label>Occasion</label>
+        <select>
+          <option value="">—</option>
+          <option>Evening out</option><option>Birthday</option>
+          <option>Work event</option><option>Private hire enquiry</option>
+        </select>
+      </div>
+    </div>
+    <div class="bf"><label>Anything else</label><textarea placeholder="—"></textarea></div>
+    <button class="booking-submit" id="fBtn" onclick="submitEnq()">Send request <span>→</span></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Nocturne</div>
+      <p class="footer-blurb">A cocktail bar beneath the arches. Bermondsey, SE1. Open Wednesday to Sunday. Drinks made carefully, served without ceremony.</p>
+    </div>
+    <div class="footer-col">
+      <h4>The bar</h4>
+      <a href="#">Menu</a>
+      <a href="#">Wine list</a>
+      <a href="#">Private hire</a>
+      <a href="#">Gift vouchers</a>
+    </div>
+    <div class="footer-col">
+      <h4>Visit</h4>
+      <a href="#">Arch 14, Druid Street SE1</a>
+      <a href="#">hello@nocturnebar.co.uk</a>
+      <a href="#">+44 (0)20 7123 4567</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-legal">© 2025 Nocturne Ltd · Registered in England · Please drink responsibly · 18+</span>
+    <span class="footer-since">Est. 2017</span>
+  </div>
+</footer>
+
+<script>
+async function submitEnq(){
+  var n=document.getElementById('fName')?.value.trim()||'',e=document.getElementById('fEmail')?.value.trim()||'',p=document.getElementById('fPhone')?.value.trim()||'';
+  if(!n){showSt('Please enter your name.','#8b0000','#fff0ee');return;}
+  var btn=document.getElementById('fBtn');btn.disabled=true;
+  try{var res=await fetch('/api/enquire',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:n,email:e,phone:p,siteName:'Nocturne',whatsappNumber:''})
+  });
+  var d=res.ok?await res.json():{success:true,whatsappUrl:'https://wa.me/'};
+  showSt('Thank you. We\'ll be in touch shortly to confirm.','#1a3a1a','#f0f8f0');
+  btn.textContent='Sent ✓';}
+  catch{btn.disabled=false;showSt('Something went wrong. Please contact us directly.','#8b0000','#fff0ee');}
+}
+function showSt(m,c,bg){var e=document.getElementById('fStatus');e.textContent=m;e.style.cssText='display:block;background:'+bg+';color:'+c+';border:1px solid '+c+';padding:.85rem 1rem;font-size:.82rem;margin-top:.75rem';}
+</script>
+</body>
+</html>
